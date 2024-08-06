@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { ClerkProvider } from '@clerk/clerk-react';
 import App from './App';
-import './index.css';
+import './styles/index.css';
 
 const clerkPublishableKey = import.meta.env.VITE_CLERK_FRONTEND_API;
 
@@ -20,4 +20,3 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
     </ClerkProvider>
   </React.StrictMode>
 );
-

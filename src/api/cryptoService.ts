@@ -5,7 +5,7 @@ const API_HOST = import.meta.env.VITE_API_HOST;
 export const fetchCryptoData = async () => {
     console.log(API_URL)
   try {
-    const response = await fetch(`${API_URL}?referenceCurrencyUuid=yhjMzLPhuIDl&timePeriod=24h&orderBy=marketCap&orderDirection=desc&limit=10&offset=0`, {
+    const response = await fetch(`${API_URL}?referenceCurrencyUuid=yhjMzLPhuIDl&timePeriod=24h&orderBy=marketCap&orderDirection=desc&limit=100&offset=0`, {
       method: 'GET',
       headers: {
         'x-rapidapi-key': RAPID_API_KEY,

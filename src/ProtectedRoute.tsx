@@ -1,19 +1,22 @@
-import React from 'react';
+import { ClipLoader } from 'react-spinners';
 import { Navigate } from 'react-router-dom';
-import { useAuth } from '@clerk/clerk-react';
+import { useUser } from '@clerk/clerk-react';
 
-const ProtectedRoute = ({ children }: { children: JSX.Element }) => {
-  const { isLoaded, userId } = useAuth();
+const ProtectedRoute: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  const { isSignedIn, isLoaded } = useUser();
 
   if (!isLoaded) {
-    return <div>Loading...</div>;
+    return <div className="flex items-center justify-center h-screen">
+    <ClipLoader size={50} color="#123abc" loading={true} />
+  </div>;
+    
   }
 
-  if (!userId) {
+  if (!isSignedIn) {
     return <Navigate to="/login" />;
   }
 
-  return children;
+  return <>{children}</>;
 };
 
 export default ProtectedRoute;
