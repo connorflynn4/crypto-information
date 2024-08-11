@@ -2,6 +2,7 @@ import React from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import Homepage from './pages/Homepage';
 import Cryptocurrencies from './pages/Cryptocurrencies';
+import CoinDetail from './pages/CoinDetail';
 import News from './pages/News';
 import Login from './pages/Login';
 import Register from './pages/Register';
@@ -40,6 +41,14 @@ const App: React.FC = () => {
             element={
               <ProtectedRoute>
                 <Cryptocurrencies />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/coin/:uuid"
+            element={
+              <ProtectedRoute>
+                <CoinDetail />
               </ProtectedRoute>
             }
           />
