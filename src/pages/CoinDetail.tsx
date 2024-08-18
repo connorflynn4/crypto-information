@@ -117,14 +117,15 @@ const CoinDetail: React.FC = () => {
             <p className="text-gray-600 mt-2"><strong>All-time-high (daily avg.):</strong> {numeral(coin.allTimeHigh.price).format('$0,0.00')}</p>
           </div>
           <div>
-            <h3 className="text-2xl font-semibold text-gray-800 mb-4">Other Stats Info</h3>
-            <p className="text-gray-600 mb-4">An overview showing the statistics of {coin.name}, such as the base and quote currency, the rank, and trading volume.</p>
-            <p className="text-gray-600"><strong>Number Of Markets:</strong> {numeral(coin.numberOfMarkets).format('0,0')}</p>
-            <p className="text-gray-600 mt-2"><strong>Number Of Exchanges:</strong> {numeral(coin.numberOfExchanges).format('0,0')}</p>
-            <p className="text-gray-600 mt-2"><strong>Approved Supply:</strong> {coin.supply.confirmed ? 'Yes' : 'No'}</p>
-            <p className="text-gray-600 mt-2"><strong>Total Supply:</strong> {numeral(coin.supply.total).format('0,0')}</p>
-            <p className="text-gray-600 mt-2"><strong>Circulating Supply:</strong> {numeral(coin.supply.circulating).format('0,0')}</p>
-          </div>
+          <h3 className="text-2xl font-semibold text-gray-800 mb-4">Other Stats Info</h3>
+          <p className="text-gray-600 mb-4">Detailed statistics for {coin.name}, including market information, supply details, and more.</p>
+          <p className="text-gray-600"><strong>Number Of Markets:</strong> {numeral(coin.numberOfMarkets).format('0,0')}</p>
+          <p className="text-gray-600 mt-2"><strong>Number Of Exchanges:</strong> {numeral(coin.numberOfExchanges).format('0,0')}</p>
+          <p className="text-gray-600 mt-2"><strong>Approved Supply:</strong> {coin.supply.confirmed ? 'Yes' : 'No'}</p>
+          <p className="text-gray-600 mt-2"><strong>Total Supply:</strong> {numeral(coin.supply.total).format('0,0')}</p>
+          <p className="text-gray-600 mt-2"><strong>Circulating Supply:</strong> {numeral(coin.supply.circulating).format('0,0')}</p>
+      </div>
+
         </div>
 
         {/* Price Chart Section */}
