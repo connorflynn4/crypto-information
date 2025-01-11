@@ -1,67 +1,35 @@
 import React from 'react';
-import { Routes, Route, Navigate } from 'react-router-dom';
+import { Routes, Route, useLocation } from 'react-router-dom';
+import Login from './pages/Login';
 import Homepage from './pages/Homepage';
 import Cryptocurrencies from './pages/Cryptocurrencies';
 import CoinDetail from './pages/CoinDetail';
 import News from './pages/News';
-import Login from './pages/Login';
-import Register from './pages/Register';
 import Sidebar from './components/Sidebar';
-import ProtectedRoute from './ProtectedRoute';
-import { useUser } from '@clerk/clerk-react';
-import { ClipLoader } from 'react-spinners';
 
 const App: React.FC = () => {
-  const { isSignedIn, isLoaded } = useUser();
+  const location = useLocation();
 
-  if (!isLoaded) {
-    return (
-      <div className="flex items-center justify-center h-screen">
-        <ClipLoader size={50} color="#123abc" loading={true} />
-      </div>
-    );
-  }
+  // Determine if the current page is the login page
+  const isLoginPage = location.pathname === '/';
 
   return (
-    <div className="flex h-screen overflow-hidden">
-      {isSignedIn && <Sidebar />}
-      <div className={`flex-grow overflow-auto`}>
+    <div className="flex h-screen">
+      {/* Conditionally render Sidebar */}
+      {!isLoginPage && <Sidebar />}
+
+      {/* Main Content */}
+      <div
+        className={`flex-grow overflow-auto ${
+          !isLoginPage ? '' : ''
+        }`} /* Adjust padding only when sidebar is visible on large screens */
+      >
         <Routes>
-          <Route path="/" element={isSignedIn ? <Navigate to="/homepage" /> : <Navigate to="/login" />} />
-          <Route
-            path="/homepage"
-            element={
-              <ProtectedRoute>
-                <Homepage />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/cryptocurrencies"
-            element={
-              <ProtectedRoute>
-                <Cryptocurrencies />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/coin/:uuid"
-            element={
-              <ProtectedRoute>
-                <CoinDetail />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/news"
-            element={
-              <ProtectedRoute>
-                <News />
-              </ProtectedRoute>
-            }
-          />
-          <Route path="/login/*" element={<Login />} />
-          <Route path="/sign-up/*" element={<Register />} />
+          <Route path="/" element={<Login />} /> {/* Default route: Login */}
+          <Route path="/homepage" element={<Homepage />} />
+          <Route path="/cryptocurrencies" element={<Cryptocurrencies />} />
+          <Route path="/coin/:uuid" element={<CoinDetail />} />
+          <Route path="/news" element={<News />} />
         </Routes>
       </div>
     </div>
